@@ -22,3 +22,5 @@ class CarousalSlideComponent {
 		return( this.isMobileDeviceDimension() ? <MobileCarousalComponent /> : <DesktopCarousalComponent />)
 	}
 }
+
+export default CarousalSlideComponent;
