@@ -8,26 +8,32 @@ class MobileCarousalComponent extends Component {
 		super(props);
 
 		this.getImageComponent = this.getImageComponent.bind(this);
+		this.updateCurrentSlideIndexHandler = this.updateCurrentSlideIndexHandler.bind(this);
+	}
+
+	updateCurrentSlideIndexHandler(delta){
+		this.props.updateCurrentSlideIndex(delta);
 	}
 
 	getImageComponent(){
-		const { imageObjArr, currentSlideIndex } = this.props;
-		const imageObj = imageObjArr[currentSlideIndex];
-
+		const { imagesObjArr, currentSlideIndex } = this.props;
+		
+		const imageObj = imagesObjArr[currentSlideIndex];
+		const imgUrl = './../images/arrows.svg'
 		return (
-				<div className = "image-container">
-					<img  src = {imageObj.imageURL} />
-					<div className="prev-mob-btn"></div>
-					<div className="next-mob-btn"></div>
+				<div className = "mob-image-container">
+					<img  src = {imageObj.userImageURL} />
+					<div className="prev-mob-btn" onClick = { () => {this.updateCurrentSlideIndexHandler(-1)}}><img src = { imgUrl } /></div>
+					<div className="next-mob-btn" onClick = { () => {this.updateCurrentSlideIndexHandler(1)}}><img src = { imgUrl } /></div>
 				</div>
 			)
 	}
 
 	render(){
-		const { imageObjArr, currentSlideIndex } = this.props;
+		const { imagesObjArr, currentSlideIndex } = this.props;
 			return (
 				<section className = "mobile-carousal-container">
-					{ imageObjArr && imageObjArr.length && this.getImageComponent()}
+					{ imagesObjArr && imagesObjArr.length && this.getImageComponent()}
 					<div className="image-caption">Image {currentSlideIndex + 1} Title</div>
 				</section>
 			)

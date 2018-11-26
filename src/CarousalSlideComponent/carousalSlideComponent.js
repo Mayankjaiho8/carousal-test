@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import MobileCarousalComponent from './../MobileCarousalComponent/mobileCarousalComponent'
 import DesktopCarousalComponent from './../DesktopCarousalComponent/desktopCarousalComponent'
 
-class CarousalSlideComponent {
+class CarousalSlideComponent extends Component {
 
 	constructor(props){
 		super(props);
@@ -13,16 +13,17 @@ class CarousalSlideComponent {
 
 	isMobileDeviceDimension(){
 		const { currentWindowWidth } = this.props;
-
-		return currentWindowWidth <= 480 && > 0;
+		
+		return currentWindowWidth <= 480 && currentWindowWidth > 0;
 	}
 
 	render(){
-		const { imageObjArr, currentSlideIndex } = this.props;
-
-		return( this.isMobileDeviceDimension() ? <MobileCarousalComponent currentSlideIndex = { currentSlideIndex } imageObjArr = { imageObjArr }/> : 
-				<DesktopCarousalComponent currentSlideIndex = { currentSlideIndex } imageObjArr = { imageObjArr } />
-			)
+		const { imagesObjArr, currentWindowWidth, currentSlideIndex, updateCurrentSlideIndex } = this.props;
+		return this.isMobileDeviceDimension() ? (<MobileCarousalComponent updateCurrentSlideIndex = { updateCurrentSlideIndex } 
+													currentSlideIndex = { currentSlideIndex } imagesObjArr = { imagesObjArr }
+													currentWindowWidth = { currentWindowWidth } />) : 
+												   (<DesktopCarousalComponent updateCurrentSlideIndex = { updateCurrentSlideIndex } 
+												   	currentSlideIndex = { currentSlideIndex } imagesObjArr = { imagesObjArr } />)
 	}
 }
 

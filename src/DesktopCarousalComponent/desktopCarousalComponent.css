@@ -13,7 +13,14 @@
 	outline:none;
 	border:none;
 	background: #80ccff;
-	color:#dddddd;
+	color:#ffffff;
+	cursor:pointer;
+	padding:20px;
+	margin-left:5px;
+}
+
+.slide-navigation-bar > button:hover{
+	background: #80eeff;
 }
 
 .slide-navigation-bar .prev-btn{
@@ -24,15 +31,16 @@
 	border-radius : 0 4px 4px 0;
 }
 
+.image-arr-container{
+	overflow:hidden;
+}
+
 .image-container{
 	padding:5px;
 	float:left;
+	width:auto;
 }
 
-.image-container > img{
-	width:100%;
-	display:block;
-}
 
 .image-caption{
 	color:#80ccff;

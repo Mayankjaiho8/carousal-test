@@ -13,15 +13,30 @@ class DesktopCarousalComponent extends Component {
 	}
 
 	getImageComponentArr(){
-		const { imageObjArr } = this.props
+		const { imagesObjArr, currentWindowWidth, currentSlideIndex } = this.props
 
-		return imageObjArr.map((imageObj, index) => (
-														<div key = { index } className = "image-container">
-															<img  src = {imageObj.imageURL} />
-															<div className="image-caption">Image {index + 1} Title</div>
-														</div>
-													)
-								)
+		let newImageObjArr = []
+		let arrLen = imagesObjArr.length;
+
+		for(let i=currentSlideIndex; i<currentSlideIndex+5; i++){
+			let currentArrIdx = this.adjustIndex(i, arrLen);
+			let currentImageObj = imagesObjArr[currentArrIdx];
+
+			currentImageObj && newImageObjArr.push(
+								<div key = { currentArrIdx } className = "image-container">
+									<img src = {currentImageObj.userImageURL} />
+									<div className="image-caption">Image {currentArrIdx + 1} Title</div>
+								</div>
+							)
+		}
+		return newImageObjArr;
+	}
+
+	adjustIndex(index, length){
+		if(index >= 0)
+			return (index%length);
+
+		return index + length
 	}
 
 	updateCurrentSlideIndexHandler(delta){
@@ -30,15 +45,19 @@ class DesktopCarousalComponent extends Component {
 
 	render(){
 
-		const { imageObjArr, currentSlideIndex } = this.props;
+		const { imagesObjArr, currentSlideIndex } = this.props;
+		const newImageArr = this.getImageComponentArr();
+		
 			return (
 				<section className = "desktop-carousal-container">
-					{ imageObjArr && imageObjArr.length && this.getImageComponentArr()}
+				<div className="image-arr-container">
+					{ imagesObjArr && imagesObjArr.length && newImageArr}
+				</div>					
 
-					<div className="slide-navigation-bar">
-						{ <button onClick = { this.updateCurrentSlideIndexHandler(-1) } className="prev-btn">Prev</button> } 
-						{ <button onClick = { this.updateCurrentSlideIndexHandler(1) } className = "next-btn">Next</button> }
-					</div>
+				<div className="slide-navigation-bar">
+					{ <button onClick = { () => { this.updateCurrentSlideIndexHandler(-1)} } className="prev-btn">Prev</button> } 
+					{ <button onClick = { () => { this.updateCurrentSlideIndexHandler(1)} } className = "next-btn">Next</button> }
+				</div>
 				</section>
 			)
 		}
