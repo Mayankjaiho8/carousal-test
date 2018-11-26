@@ -1,0 +1,40 @@
+.desktop-carousal-container{
+	padding-top:10px;
+
+}
+
+.slide-navigation-bar{
+	background:#f1f1f1;
+	text-align:center;
+	padding:15px;
+}
+
+.slide-navigation-bar > button{
+	outline:none;
+	border:none;
+	background: #80ccff;
+	color:#dddddd;
+}
+
+.slide-navigation-bar .prev-btn{
+	border-radius : 4px 0 0 4px;
+}
+
+.slide-navigation-bar .next-btn{
+	border-radius : 0 4px 4px 0;
+}
+
+.image-container{
+	padding:5px;
+	float:left;
+}
+
+.image-container > img{
+	width:100%;
+	display:block;
+}
+
+.image-caption{
+	color:#80ccff;
+	padding:2px;
+}
