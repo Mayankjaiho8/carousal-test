@@ -1,0 +1,15 @@
+/*
+	author : Mayank Kumawat
+*/
+
+Please find below my approach in developing this carousal 
+
+(1).  I First developed App.js which bacsically contains 2 components - Header and Carousal
+
+(2). Header component is same in both mobile and desktop layout hence no need to make any change in it and simply we can use same components for both layout.
+
+(3). Carousal componetnt is basically a container component depending on the viewport width. If viewport width is less than or equal to 480px simply render MobileCarousalComponent else DesktopCarousalComponent.
+
+(4). In Desktop Carousal Component there is a seprate section for Prev and Next button. In MObile carousal component "next" and "previous" button is present in sideways of image.
+
+(5). Callback function for action on clicking on "previous" and "next" button is handled in App.js as callback function as React basically is based on uni-directional flow.

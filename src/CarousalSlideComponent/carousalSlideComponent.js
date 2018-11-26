@@ -14,7 +14,7 @@ class CarousalSlideComponent extends Component {
 	isMobileDeviceDimension(){
 		const { currentWindowWidth } = this.props;
 		
-		return currentWindowWidth <= 480 && currentWindowWidth > 0;
+		return currentWindowWidth <= 480
 	}
 
 	render(){
