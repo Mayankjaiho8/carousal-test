@@ -1,25 +1,36 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import HeaderComponent from './HeaderComponent/headerComponent';
+
 import './App.css';
 
 class App extends Component {
+
+  constructor(props){
+    super(props);
+    this.state = {
+      windowHeight:0,
+      windowWidth : 0
+    }
+
+    this.setWindowDimension = this.setWindowDimension.bind(this);
+  }
+
+  componentWillMount(){
+    window.addEventListener('resize', this.setWindowDimension);
+  }
+
+  setWindowDimension(){
+    const windowHeight = window.innerHeight;
+    const windowWidth = window.innerWidth;
+
+    this.setState({...this.state, windowHeight, windowWidth});
+  }
+
+
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+      <div className="app-container">
+        <HeaderComponent />
       </div>
     );
   }
