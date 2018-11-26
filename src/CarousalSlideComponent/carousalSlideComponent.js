@@ -14,12 +14,15 @@ class CarousalSlideComponent {
 	isMobileDeviceDimension(){
 		const { currentWindowWidth } = this.props;
 
-		return currentWindowWidth <= 480;
+		return currentWindowWidth <= 480 && > 0;
 	}
 
 	render(){
+		const { imageObjArr, currentSlideIndex } = this.props;
 
-		return( this.isMobileDeviceDimension() ? <MobileCarousalComponent /> : <DesktopCarousalComponent />)
+		return( this.isMobileDeviceDimension() ? <MobileCarousalComponent currentSlideIndex = { currentSlideIndex } imageObjArr = { imageObjArr }/> : 
+				<DesktopCarousalComponent currentSlideIndex = { currentSlideIndex } imageObjArr = { imageObjArr } />
+			)
 	}
 }
 
